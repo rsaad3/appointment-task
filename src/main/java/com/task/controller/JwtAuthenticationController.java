@@ -46,7 +46,7 @@ public class JwtAuthenticationController {
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
 	
-	@GetMapping(value = "/test")
+	@GetMapping(value = "/")
 	public String saveUser(@RequestBody UserDto user) throws Exception {
 		return "welcome heroku";
 	}

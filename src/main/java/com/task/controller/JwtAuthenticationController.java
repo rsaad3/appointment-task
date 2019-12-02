@@ -47,7 +47,7 @@ public class JwtAuthenticationController {
 	}
 	
 	@GetMapping(value = "/")
-	public String saveUser(@RequestBody UserDto user) throws Exception {
+	public String saveUser() throws Exception {
 		return "welcome heroku";
 	}
 

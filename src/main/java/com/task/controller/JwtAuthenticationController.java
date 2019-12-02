@@ -8,6 +8,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,10 +46,10 @@ public class JwtAuthenticationController {
 		return ResponseEntity.ok(new JwtResponse(token));
 	}
 	
-//	@RequestMapping(value = "/register", method = RequestMethod.POST)
-//	public ResponseEntity<?> saveUser(@RequestBody UserDto user) throws Exception {
-//		return ResponseEntity.ok(userDetailsService.save(user));
-//	}
+	@GetMapping(value = "/test")
+	public String saveUser(@RequestBody UserDto user) throws Exception {
+		return "welcome heroku";
+	}
 
 	private void authenticate(String username, String password) throws Exception {
 		try {

@@ -1,24 +1,19 @@
 package com.task;
 
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.task.dao.BaseDao;
 import com.task.dao.DoctorDao;
 import com.task.dao.PatientDao;
 import com.task.dao.UserDao;
-import com.task.model.Appointment;
-import com.task.model.AppointmentCId;
 import com.task.model.Doctors;
 import com.task.model.Patients;
 import com.task.model.User;
+import com.task.service.DoctorService;
+import com.task.service.PatientService;
 
 @SpringBootTest
 class TaskApplicationTests {
@@ -34,7 +29,12 @@ class TaskApplicationTests {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-
+	
+	@Autowired
+	private DoctorService doctorService;
+	
+	@Autowired
+	PatientService patientService;
 	@Test
 	void contextLoads() {
 //
@@ -93,7 +93,15 @@ class TaskApplicationTests {
 //		apps.add(app);
 //		patient.setAppointments(apps);
 //		patientDao.save(patient);
-
+		
+		
+//		System.out.println(doctorDao.findByEmail("Islam@dxc.com"));
+		
+		Doctors d = doctorDao.findByUserUserName("Islam");
+		System.out.println(d);
+		
+		Patients p = patientService.findByUserUserName("mohamed");
+		System.out.println(p);
 	}
 
 }

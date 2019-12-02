@@ -2,6 +2,8 @@ package com.task.service;
 
 import java.util.ArrayList;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,6 +16,7 @@ import com.task.dao.UserDao;
 import com.task.model.User;
 
 @Service
+@Transactional
 public class UserService implements UserDetailsService {
 
 	@Autowired
@@ -21,7 +24,7 @@ public class UserService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userDao.findByUserName(username).get(0);
+		User user = userDao.findByUserName(username);
 		if (user == null) {
 			throw new UsernameNotFoundException("User not found with username: " + username);
 		}
@@ -31,6 +34,10 @@ public class UserService implements UserDetailsService {
 
 	public User SaveUser(User user) {
 		return userDao.save(user);
+	}
+	
+	public User findByUsrName(String userName) {
+		return userDao.findByUserName(userName);
 	}
 
 }

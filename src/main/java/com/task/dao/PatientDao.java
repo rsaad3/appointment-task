@@ -1,9 +1,10 @@
 package com.task.dao;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.task.model.Patients;
 
-public interface PatientDao extends JpaRepository<Patients, Integer>  {
+@Repository
+public interface PatientDao extends BaseDao<Patients, Integer> {
 
 }

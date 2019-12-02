@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name = "appointment", uniqueConstraints = {
 		@UniqueConstraint(columnNames = { "doctor_id", "start_at", "end_at" }),
@@ -42,9 +44,11 @@ public class Appointment implements Serializable {
 //	private Patients patient;
 
 	@Column(name = "start_at")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date startAppointment;
 
 	@Column(name = "end_at")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date endAppointment;
 
 	public Appointment() {

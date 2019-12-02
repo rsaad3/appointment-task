@@ -18,12 +18,9 @@ public class JwtUserDetailsService implements UserDetailsService {
 	@Autowired
 	private UserDao userDao;
 
-//	@Autowired
-//	private PasswordEncoder bcryptEncoder;
-
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userDao.findByUserName(username).get(0);
+		User user = userDao.findByUserName(username);
 		if (user == null) {
 			throw new UsernameNotFoundException("User not found with username: " + username);
 		}

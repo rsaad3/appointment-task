@@ -1,9 +1,12 @@
 package com.task.dao;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.task.model.Doctors;
 
-public interface DoctorDao extends JpaRepository<Doctors, Integer> {
+@Repository
+public interface DoctorDao extends BaseDao<Doctors, Integer> {
+
+	
 
 }

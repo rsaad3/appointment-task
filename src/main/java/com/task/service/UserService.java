@@ -17,7 +17,6 @@ import com.task.dao.UserDao;
 import com.task.model.User;
 
 @Service
-@Transactional
 public class UserService implements UserDetailsService {
 
 	@Autowired

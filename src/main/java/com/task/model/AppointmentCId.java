@@ -6,7 +6,10 @@ import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+/*
+ * to divide many to many relationship between doctor and patient
+ *  with appointment start and end 
+ * */
 @Embeddable
 public class AppointmentCId implements Serializable {
 	private static final long serialVersionUID = 1L;

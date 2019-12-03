@@ -14,7 +14,9 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
+/*
+ * add unique constaint to prevent appointments in the same time
+ * */
 @Entity
 @Table(name = "appointment", uniqueConstraints = {
 		@UniqueConstraint(columnNames = { "doctor_id", "start_at", "end_at" }),

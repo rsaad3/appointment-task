@@ -8,6 +8,10 @@ import javax.persistence.Embeddable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+/*
+ * to divide many to many relationship between doctor and patient
+ *  with appointment start and end 
+ * */
 @Embeddable
 public class AppointmentId implements Serializable {
 

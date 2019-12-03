@@ -1,5 +1,7 @@
 package com.task.dto;
-
+/*
+ * user data transfer between back and front end
+ * */
 public class UserDto {
 
 	private String email;

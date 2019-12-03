@@ -15,6 +15,10 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import lombok.Data;
 
+/*
+ * patient can make may appointment but in different date
+ *  and with different doctors
+ * */
 @Entity(name = "patients")
 public class Patients extends BaseUser {
 

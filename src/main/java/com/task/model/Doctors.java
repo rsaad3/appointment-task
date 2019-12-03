@@ -12,7 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
+/*
+ * doctor have many appointment but in different time
+ * */
 @Entity(name = "doctors")
 public class Doctors extends BaseUser {
 

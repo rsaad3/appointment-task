@@ -53,6 +53,11 @@ public class AppointmentController {
 	@Autowired
 	private UserService useService;
 
+	/*
+	 * save user based on the role first save user and then if role docctor it will
+	 * create doctor record for this user else will create patient
+	 */
+
 	@PostMapping("/saveUser")
 	public User saveUser(@RequestBody UserDto userDetial) throws Exception {
 		String pass = passwordEncoder.encode(userDetial.getPassword());
@@ -74,6 +79,11 @@ public class AppointmentController {
 		return user;
 	}
 
+	/*
+	 * get all apppointment when the app start 
+	 * to show them in time line components
+	 * */
+	
 	@GetMapping("/appointments")
 	@CrossOrigin(origins = "*")
 	public List<DoctorDto> listAllAppointments() {

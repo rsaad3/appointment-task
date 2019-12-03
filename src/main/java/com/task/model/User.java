@@ -7,10 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+/*
+ * each doctor and patient has one to one relation with user 
+ * */
 @Entity
-@Table(uniqueConstraints = {
-		@UniqueConstraint(columnNames = {"userName"})})
-public class User{
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "userName" }) })
+public class User {
 
 	@Id
 	@GeneratedValue

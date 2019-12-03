@@ -1,5 +1,10 @@
 package com.task.dto;
 
+/*
+ * appointment between doctor and patient with start
+ *  and end date of appointment and the patient complaint
+ * */
+
 public class AppointmentDto {
 	private String patientUserName;
 	private String doctorUserName;

@@ -1,11 +1,12 @@
 package com.task.dto;
 
-import java.util.Date;
 import java.util.List;
 
 import com.task.model.Appointment;
 import com.task.model.User;
-
+/*
+ * doctor data transfer to get doctor with the appointments
+ * */
 public class DoctorDto {
 
 	private String name;

@@ -3,8 +3,6 @@ package com.task.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +10,9 @@ import org.springframework.stereotype.Service;
 import com.task.dao.DoctorDao;
 import com.task.dto.DoctorDto;
 import com.task.model.Doctors;
-import com.task.model.Patients;
 
 @Service
-public class DoctorService extends BaseServiceImpl<Doctors> {
+public class DoctorService {
 
 	@Autowired
 	private DoctorDao doctorDao;
@@ -35,8 +32,8 @@ public class DoctorService extends BaseServiceImpl<Doctors> {
 	public Doctors saveDoctors(Doctors doctor) {
 		return doctorDao.save(doctor);
 	}
-	
-	public Doctors findByUserUserName(String name) {
+
+	public Doctors findDoctorByUserUserName(String name) {
 		return doctorDao.findByUserUserName(name);
 	}
 }

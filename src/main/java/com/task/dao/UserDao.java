@@ -8,5 +8,5 @@ import com.task.model.User;
 
 public interface UserDao extends JpaRepository<User, Integer>{
 
-	public User findByUserName(String username);
+	public List<User> findByUserName(String username);
 }

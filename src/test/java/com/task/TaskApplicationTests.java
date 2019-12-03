@@ -1,5 +1,9 @@
 package com.task;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,7 +40,7 @@ class TaskApplicationTests {
 	@Autowired
 	PatientService patientService;
 	@Test
-	void contextLoads() {
+	void contextLoads() throws ParseException {
 //
 //		Calendar c1 = Calendar.getInstance();
 //
@@ -96,12 +100,16 @@ class TaskApplicationTests {
 		
 		
 //		System.out.println(doctorDao.findByEmail("Islam@dxc.com"));
+//		
+//		Doctors d = doctorDao.findByUserUserName("Islam");
+//		System.out.println(d);
+//		
+//		Patients p = patientService.findByUserUserName("mohamed");
+//		System.out.println(p);
 		
-		Doctors d = doctorDao.findByUserUserName("Islam");
-		System.out.println(d);
-		
-		Patients p = patientService.findByUserUserName("mohamed");
-		System.out.println(p);
+		String data = "2019-10-12 10:50";
+		Date date = new SimpleDateFormat("YYYY-MM-DD HH:mm").parse(data);
+		System.out.println(date);
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.task.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -24,7 +25,7 @@ public class UserService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userDao.findByUserName(username);
+		User user = userDao.findByUserName(username).get(0);
 		if (user == null) {
 			throw new UsernameNotFoundException("User not found with username: " + username);
 		}
@@ -36,7 +37,7 @@ public class UserService implements UserDetailsService {
 		return userDao.save(user);
 	}
 	
-	public User findByUsrName(String userName) {
+	public List<User> findByUsrName(String userName) {
 		return userDao.findByUserName(userName);
 	}
 

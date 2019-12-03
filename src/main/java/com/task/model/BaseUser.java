@@ -11,7 +11,7 @@ public class BaseUser {
 	@Column(nullable = false)
 	private String address;
 	private int age;
-	@Column(nullable = false)
+	@Column(nullable = false ,unique = true)
 	private String email;
 
 	public BaseUser() {

@@ -10,6 +10,9 @@ public class UserDto {
 	private int age;
 	private String address;
 	private String specialization;
+	private int startWork;
+	private int endWork;
+	private double ticketPrice;
 
 	public String getUserName() {
 		return userName;
@@ -73,6 +76,30 @@ public class UserDto {
 
 	public void setSpecialization(String specialization) {
 		this.specialization = specialization;
+	}
+
+	public int getStartWork() {
+		return startWork;
+	}
+
+	public void setStartWork(int startWork) {
+		this.startWork = startWork;
+	}
+
+	public int getEndWork() {
+		return endWork;
+	}
+
+	public void setEndWork(int endWork) {
+		this.endWork = endWork;
+	}
+
+	public double getTicketPrice() {
+		return ticketPrice;
+	}
+
+	public void setTicketPrice(double ticketPrice) {
+		this.ticketPrice = ticketPrice;
 	}
 
 }

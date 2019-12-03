@@ -1,16 +1,11 @@
 package com.task.dto;
 
-import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 public class AppointmentDto {
 	private String patientUserName;
 	private String doctorUserName;
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date appointmentStart;
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date appointmentEnd;
+	private String appointmentStart;
+	private String appointmentEnd;
+	private String complaint;
 
 	public String getPatientUserName() {
 		return patientUserName;
@@ -28,19 +23,28 @@ public class AppointmentDto {
 		this.doctorUserName = doctorUserName;
 	}
 
-	public Date getAppointmentStart() {
+	public String getAppointmentStart() {
 		return appointmentStart;
 	}
 
-	public void setAppointmentStart(Date appointmentStart) {
+	public void setAppointmentStart(String appointmentStart) {
 		this.appointmentStart = appointmentStart;
 	}
 
-	public Date getAppointmEnd() {
+	public String getAppointmentEnd() {
 		return appointmentEnd;
 	}
 
-	public void setAppointmEnd(Date appointmEnd) {
-		this.appointmentEnd = appointmEnd;
+	public void setAppointmentEnd(String appointmentEnd) {
+		this.appointmentEnd = appointmentEnd;
 	}
+
+	public String getComplaint() {
+		return complaint;
+	}
+
+	public void setComplaint(String complaint) {
+		this.complaint = complaint;
+	}
+
 }

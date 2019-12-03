@@ -25,24 +25,8 @@ public class Appointment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	/*
-	 * @Id
-	 * 
-	 * @GeneratedValue private int app_id;
-	 */
 	@EmbeddedId
 	private AppointmentCId id;
-
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@MapsId("doctorId")
-//	@JoinColumn(name = "doctor_id", insertable = false, updatable = false)
-//	private Doctors doctor;
-//
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@MapsId("patientId")
-//	@JoinColumn(name = "patient_id", insertable = false, updatable = false)
-//	private Patients patient;
-
 	@Column(name = "start_at")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date startAppointment;
@@ -51,14 +35,10 @@ public class Appointment implements Serializable {
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private Date endAppointment;
 
+	private String patiantComplaint;
+
 	public Appointment() {
 	}
-
-//	public Appointment(Doctors doctor, Patients patient) {
-//		this.doctor = doctor;
-//		this.patient = patient;
-//		this.id = new AppointmentId(patient.getUserId(), doctor.getUserId());
-//	}
 
 	public AppointmentCId getId() {
 		return id;
@@ -68,28 +48,12 @@ public class Appointment implements Serializable {
 		this.id = id;
 	}
 
-//	public Doctors getDoctor() {
-//		return doctor;
-//	}
-//
-//	public void setDoctor(Doctors doctor) {
-//		this.doctor = doctor;
-//	}
-
-//	public Patients getPatient() {
-//		return patient;
-//	}
-//
-//	public void setPatient(Patients patient) {
-//		this.patient = patient;
-//	}
-
 	@Transient
 	public Doctors getDoctor() {
 		return getId().getDoctor();
 	}
 
-	public void setStock(Doctors doctor) {
+	public void setDoctor(Doctors doctor) {
 		getId().setDoctor(doctor);
 	}
 
@@ -116,6 +80,14 @@ public class Appointment implements Serializable {
 
 	public void setEndAppointment(Date endAppointment) {
 		this.endAppointment = endAppointment;
+	}
+
+	public String getPatiantComplaint() {
+		return patiantComplaint;
+	}
+
+	public void setPatiantComplaint(String patiantComplaint) {
+		this.patiantComplaint = patiantComplaint;
 	}
 
 	@Override

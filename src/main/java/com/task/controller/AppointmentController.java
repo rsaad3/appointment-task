@@ -1,6 +1,10 @@
 package com.task.controller;
 
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -18,6 +22,8 @@ import com.task.dao.PatientDao;
 import com.task.dto.AppointmentDto;
 import com.task.dto.DoctorDto;
 import com.task.dto.UserDto;
+import com.task.exceptions.UserExistException;
+import com.task.exceptions.UserNotFoundException;
 import com.task.model.Appointment;
 import com.task.model.AppointmentCId;
 import com.task.model.Doctors;
@@ -46,12 +52,14 @@ public class AppointmentController {
 
 	@Autowired
 	private UserService useService;
-	
-	
+
 	@PostMapping("/saveUser")
-	public User saveUser(@RequestBody UserDto userDetial) {
+	public User saveUser(@RequestBody UserDto userDetial) throws Exception {
 		String pass = passwordEncoder.encode(userDetial.getPassword());
 		User user = new User(userDetial.getUserName(), pass, userDetial.getRole());
+		if (useService.findByUsrName(userDetial.getUserName()).size() > 0) {
+			throw new UserExistException();
+		}
 		user = useService.SaveUser(user);
 		if (userDetial.getRole().equalsIgnoreCase("doctor")) {
 			Doctors doctor = modelMapper.map(userDetial, Doctors.class);
@@ -62,10 +70,8 @@ public class AppointmentController {
 			Patients patient = modelMapper.map(userDetial, Patients.class);
 			patient.setUser(user);
 			patient = patientService.savePatient(patient);
-			System.out.println(patient);
 		}
 		return user;
-
 	}
 
 	@GetMapping("/appointments")
@@ -75,34 +81,41 @@ public class AppointmentController {
 	}
 
 	@PostMapping("/createAppointment")
-	public Appointment createAppointment(@RequestBody AppointmentDto appointmentDto) {
-		System.out.println("Appointments");
-		Doctors doctor = doctorService.findByUserUserName(appointmentDto.getDoctorUserName());
-		Patients patient = patientService.findByUserUserName(appointmentDto.getPatientUserName());
-		if(patient==null) {
-			Doctors doctorPatient = doctorService.findByUserUserName(appointmentDto.getPatientUserName());
-			Patients patientDoctor = new Patients();
-			patientDoctor.setAddress(doctorPatient.getAddress());
-			patientDoctor.setAge(doctorPatient.getAge());
-			patientDoctor.setEmail(doctorPatient.getAddress());
-			patientDoctor.setName(doctorPatient.getName());
-			patientDoctor.setUser(doctorPatient.getUser());
-			patient = patientService.savePatient(patientDoctor);
+	public Appointment createAppointment(@RequestBody AppointmentDto appointmentDto) throws ParseException {
+		Doctors doctor = doctorService.findDoctorByUserUserName(appointmentDto.getDoctorUserName());
+		Patients patient = patientService.findPatientByUserUserName(appointmentDto.getPatientUserName());
+		if (doctor == null) {
+			throw new UserNotFoundException();
 		}
-			
+		if (patient == null) {
+			Doctors doctorPatient = doctorService.findDoctorByUserUserName(appointmentDto.getPatientUserName());
+			Patients patientDoctor = patientService.findPatientByUserUserName(doctorPatient.getUser().getUserName());
+			if (patientDoctor == null) {
+				patientDoctor = new Patients();
+				patientDoctor.setAddress(doctorPatient.getAddress());
+				patientDoctor.setAge(doctorPatient.getAge());
+				patientDoctor.setEmail(doctorPatient.getAddress());
+				patientDoctor.setName(doctorPatient.getName());
+				patientDoctor.setUser(doctorPatient.getUser());
+				patient = patientService.savePatient(patientDoctor);
+			} else
+				patient = patientService.savePatient(patientDoctor);
+		}
+
 		AppointmentCId appCid = new AppointmentCId();
 		appCid.setDoctor(doctor);
 		appCid.setPatient(patient);
 		Appointment app = new Appointment();
 		app.setId(appCid);
-		app.setStartAppointment(appointmentDto.getAppointmentStart());
-		app.setEndAppointment(appointmentDto.getAppointmEnd());
+		app.setStartAppointment(new SimpleDateFormat("YYYY-MM-DD HH:mm").parse(appointmentDto.getAppointmentStart()));
+		app.setEndAppointment(new SimpleDateFormat("YYYY-MM-DD HH:mm").parse(appointmentDto.getAppointmentEnd()));
+		app.setDoctor(doctor);
+		app.setPatiantComplaint(appointmentDto.getComplaint());
 		List<Appointment> apps = new ArrayList<Appointment>();
 		apps.add(app);
 		patient.setAppointments(apps);
 		patient = patientService.savePatient(patient);
 		return app;
-
 	}
 
 }

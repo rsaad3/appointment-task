@@ -10,11 +10,28 @@ public class DoctorDto {
 
 	private String name;
 	private String email;
-	private Date starteWork;
-	private Date endWork;
+	private int startWork;
+	private int endWork;
 	private List<Appointment> appointments;
 	private double ticketPrice;
 	private String specialization;
+
+	public int getStartWork() {
+		return startWork;
+	}
+
+	public void setStartWork(int startWork) {
+		this.startWork = startWork;
+	}
+
+	public int getEndWork() {
+		return endWork;
+	}
+
+	public void setEndWork(int endWork) {
+		this.endWork = endWork;
+	}
+
 	private User user;
 	private String address;
 
@@ -32,22 +49,6 @@ public class DoctorDto {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public Date getStarteWork() {
-		return starteWork;
-	}
-
-	public void setStarteWork(Date starteWork) {
-		this.starteWork = starteWork;
-	}
-
-	public Date getEndWork() {
-		return endWork;
-	}
-
-	public void setEndWork(Date endWork) {
-		this.endWork = endWork;
 	}
 
 	public List<Appointment> getAppointments() {
@@ -92,7 +93,7 @@ public class DoctorDto {
 
 	@Override
 	public String toString() {
-		return "DoctorDto [name=" + name + ", email=" + email + ", starteWork=" + starteWork + ", endWork=" + endWork
+		return "DoctorDto [name=" + name + ", email=" + email + ", starteWork=" + startWork + ", endWork=" + endWork
 				+ ", appointments=" + appointments + "]";
 	}
 

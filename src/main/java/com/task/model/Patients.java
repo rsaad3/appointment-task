@@ -22,7 +22,7 @@ public class Patients extends BaseUser {
 	@GeneratedValue
 	@Column(name = "patient_id")
 	private int id;
-	private String patiantComplaint;
+
 	@OneToMany(mappedBy = "id.patient", cascade = CascadeType.ALL)
 	private List<Appointment> appointments = new ArrayList<Appointment>();
 
@@ -41,25 +41,12 @@ public class Patients extends BaseUser {
 		this.id = id;
 	}
 
-	public String getPatiantComplaint() {
-		return patiantComplaint;
-	}
-
-	public void setPatiantComplaint(String patiantComplaint) {
-		this.patiantComplaint = patiantComplaint;
-	}
-
 	public List<Appointment> getAppointments() {
 		return appointments;
 	}
 
 	public void setAppointments(List<Appointment> appointments) {
 		this.appointments = appointments;
-	}
-
-	@Override
-	public String toString() {
-		return "Patients [patiantComplaint=" + patiantComplaint + "]";
 	}
 
 	public User getUser() {
@@ -69,7 +56,5 @@ public class Patients extends BaseUser {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
 
 }

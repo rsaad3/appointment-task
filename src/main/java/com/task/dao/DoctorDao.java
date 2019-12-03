@@ -7,6 +7,4 @@ import com.task.model.Doctors;
 @Repository
 public interface DoctorDao extends BaseDao<Doctors, Integer> {
 
-	
-
 }

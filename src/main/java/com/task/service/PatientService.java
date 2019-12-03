@@ -7,16 +7,16 @@ import com.task.dao.PatientDao;
 import com.task.model.Patients;
 
 @Service
-public class PatientService extends BaseServiceImpl<Patients> {
+public class PatientService {
 
 	@Autowired
 	private PatientDao patientDao;
-	
+
 	public Patients savePatient(Patients patient) {
 		return patientDao.save(patient);
 	}
-	
-	public Patients findByUserUserName(String name) {
+
+	public Patients findPatientByUserUserName(String name) {
 		return patientDao.findByUserUserName(name);
 	}
 

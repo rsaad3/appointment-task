@@ -4,14 +4,19 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints = {
+		@UniqueConstraint(columnNames = {"userName"})})
 public class User{
 
 	@Id
 	@GeneratedValue
 	@Column(name = "userId")
 	private int id;
+	@Column(unique = true)
 	private String userName;
 	private String password;
 	private String role;

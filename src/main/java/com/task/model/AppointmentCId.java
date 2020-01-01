@@ -1,10 +1,14 @@
 package com.task.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.EmbeddedId;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 /*
  * to divide many to many relationship between doctor and patient
@@ -19,6 +23,14 @@ public class AppointmentCId implements Serializable {
 	@ManyToOne
 	@JsonIgnore
 	private Patients patient;
+	
+	@Column(name = "start_at")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+	private Date startAppointment;
+
+	@Column(name = "end_at")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+	private Date endAppointment;
 
 	public Doctors getDoctor() {
 		return doctor;
@@ -50,6 +62,22 @@ public class AppointmentCId implements Serializable {
 			return false;
 
 		return true;
+	}
+
+	public Date getStartAppointment() {
+		return startAppointment;
+	}
+
+	public void setStartAppointment(Date startAppointment) {
+		this.startAppointment = startAppointment;
+	}
+
+	public Date getEndAppointment() {
+		return endAppointment;
+	}
+
+	public void setEndAppointment(Date endAppointment) {
+		this.endAppointment = endAppointment;
 	}
 
 	public int hashCode() {

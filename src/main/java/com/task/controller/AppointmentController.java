@@ -115,13 +115,14 @@ public class AppointmentController {
 		AppointmentCId appCid = new AppointmentCId();
 		appCid.setDoctor(doctor);
 		appCid.setPatient(patient);
+		appCid.setStartAppointment(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(appointmentDto.getAppointmentStart()));
+		appCid.setEndAppointment(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(appointmentDto.getAppointmentEnd()));
 		Appointment app = new Appointment();
 		app.setId(appCid);
-		app.setStartAppointment(new SimpleDateFormat("YYYY-MM-DD HH:mm").parse(appointmentDto.getAppointmentStart()));
-		app.setEndAppointment(new SimpleDateFormat("YYYY-MM-DD HH:mm").parse(appointmentDto.getAppointmentEnd()));
+		
 		app.setDoctor(doctor);
 		app.setPatiantComplaint(appointmentDto.getComplaint());
-		List<Appointment> apps = new ArrayList<Appointment>();
+		List<Appointment> apps = patient.getAppointments();
 		apps.add(app);
 		patient.setAppointments(apps);
 		patient = patientService.savePatient(patient);

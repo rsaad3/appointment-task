@@ -29,13 +29,13 @@ public class Appointment implements Serializable {
 
 	@EmbeddedId
 	private AppointmentCId id;
-	@Column(name = "start_at")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date startAppointment;
-
-	@Column(name = "end_at")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date endAppointment;
+//	@Column(name = "start_at")
+//	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+//	private Date startAppointment;
+//
+//	@Column(name = "end_at")
+//	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+//	private Date endAppointment;
 
 	private String patiantComplaint;
 
@@ -68,21 +68,21 @@ public class Appointment implements Serializable {
 		getId().setPatient(patient);
 	}
 
-	public Date getStartAppointment() {
-		return startAppointment;
-	}
-
-	public void setStartAppointment(Date startAppointment) {
-		this.startAppointment = startAppointment;
-	}
-
-	public Date getEndAppointment() {
-		return endAppointment;
-	}
-
-	public void setEndAppointment(Date endAppointment) {
-		this.endAppointment = endAppointment;
-	}
+//	public Date getStartAppointment() {
+//		return startAppointment;
+//	}
+//
+//	public void setStartAppointment(Date startAppointment) {
+//		this.startAppointment = startAppointment;
+//	}
+//
+//	public Date getEndAppointment() {
+//		return endAppointment;
+//	}
+//
+//	public void setEndAppointment(Date endAppointment) {
+//		this.endAppointment = endAppointment;
+//	}
 
 	public String getPatiantComplaint() {
 		return patiantComplaint;
